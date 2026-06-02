@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PropertyHub | Find Your Dream Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="container navbar">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-house-chimney-user"></i> PropertyHub
+            </a>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#listings">Properties</a></li>
+                <li><a href="#tools">Tools</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="theme-toggle" id="viewBookmarksBtn" title="View Saved Properties"
+                  style="position: relative;margin-right: 10px;">
+                    <i class="fa-solid fa-heart" style="color: #e53935;"></i>
+                    <span id="bookmarkCounter" style="position: absolute;top: -8px; right: -8px;
+                    background: var(--text-main); color: var(--bg-card); font-size: 0.7rem; padding:2px 6px;
+                    border-radius: 50%; font-weight: bold;">0</span>
+                </button>
+                <button class="theme-toggle" id="themeToggleBtn" title="Toggle Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <a href="#" class="btn-login">Login</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero" id="hero">
+        <div class="hero-slider-container">
+            <div class="hero-slide active" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('pic1.jpg');"></div>
+            <div class="hero-slide" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.4)), url('pic2.jpg');"></div>
+        </div>
+        <div class="hero-content">
+            <h1>Find Your <span class="typing-text" id="typingElement"></span></h1>
+        </div>
+    </section>
+
+    <div class="container search-container">
+        <div class="search-wrapper">
+            <div class="search-tabs">
+                <div class="tab-label active" data-category="Buy" id="tabBuy">Buy Properties</div>
+                <div class="tab-label" data-category="Rent" id="tabRent">Rental Spaces</div>
+                <div class="tab-label"  data-category="PG" id="tabPg">PG / Co-Living Spaces</div>
+            </div>
+            <div class="search-fields">
+                <select id="filterCity">
+                    <option value="">Select City</option>
+                    <option value="Hyderabad">Hyderabad</option>
+                    <option value="Bengaluru">Bengaluru</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Pune">Pune</option>
+                </select>
+                <select id="filterPrice">
+                    <option value="">Budget / Price Range</option>
+                    <option value="50L">Under ₹50 Lakhs</option>
+                    <option value="1C">₹50 Lakhs - ₹1.5 Crores</option>
+                    <option value="3C">₹1.5 Crores - ₹3.5 Crores</option>
+                    <option value="luxury">Above ₹3.5 Crores</option>
+                </select>
+                <select id="filterType">
+                    <option value="">Property Type</option>
+                    <option value="Villa">Ultra-Luxury Villa</option>
+                    <option value="Apartment">Modern Apartment</option>
+                    <option value="Penthouse">Premium Penthouse</option>
+                </select>
+                <button class="btn-search" id="searchBtn"><i class="fa-solid fa-magnifying-glass"></i> Search</button>
+            </div>
+        </div>
+    </div>
+
+    <section class="container" id="listings">
+        <div class="heading-center">
+            <h2>Featured Premium Properties</h2>
+            <p>Handpicked, verified architectural masterpieces across premier corporate hubs.</p>
+        </div>
+        <div class="property-grid" id="propertyGrid">
+            </div>
+    </section>
+
+    <section class="container" id="tools" style="border-top: 1px solid var(--border-color);">
+        <div class="grid-2col">
+            <div class="interactive-card">
+                <h3><i class="fa-solid fa-calculator" style="color: var(--primary);"></i> Smart EMI Calculator</h3>
+                <p style="color: var(--text-muted); font-size:0.9rem; margin-bottom: 20px;">Plan your investments accurately with dynamic processing rates.</p>
+                <div class="form-group">
+                    <label for="emiAmount">Principal Amount (₹)</label>
+                    <input type="number" id="emiAmount" value="7500000">
+                </div>
+                <div class="form-group">
+                    <label for="emiRate">Interest Rate (% P.A.)</label>
+                    <input type="number" id="emiRate" step="0.1" value="8.5">
+                </div>
+                <div class="form-group">
+                    <label for="emiTenure">Tenure (Years)</label>
+                    <input type="number" id="emiTenure" value="20">
+                </div>
+                <button class="btn-search" style="width:100%;" id="calcEmiBtn">Calculate Monthly Outflow</button>
+                <div class="calc-result">
+                    <span>Estimated Monthly EMI</span>
+                    <h4 id="emiOutput">₹65,093 / mo</h4>
+                </div>
+            </div>
+
+            <div class="interactive-card">
+                <h3><i class="fa-solid fa-code-compare" style="color: var(--primary);"></i> Property Side-by-Side Comparison</h3>
+                <p style="color: var(--text-muted); font-size:0.9rem; margin-bottom: 20px;">Evaluate specifications immediately to choose your optimal configuration.</p>
+                <div class="form-group">
+                    <label for="compare1">Select Primary Unit</label>
+                    <select id="compare1">
+                        <option value="0">The Luminary Oasis (Gachibowli)</option>
+                        <option value="1">Elysian Sky Residence (Whitefield)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="compare2">Select Secondary Unit</label>
+                    <select id="compare2">
+                        <option value="1" selected>Elysian Sky Residence (Whitefield)</option>
+                        <option value="0">The Luminary Oasis (Gachibowli)</option>
+                    </select>
+                </div>
+                <div id="comparisonResult" style="font-size: 0.9rem; line-height: 1.6; border-top: 1px solid var(--border-color); padding-top: 15px;">
+                    </div>
+            </div>
+        </div>
+    </section>
+
+  
+
+    <div class="stats-counter-row" style="display: flex; justify-content: space-around; padding: 40px 20px; text-align: center;">
+    <div class="stat-item">
+        <h2 class="stat-number" data-target="150" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 5px;">0</h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Premium Deliveries</p>
+    </div>
+    <div class="stat-item">
+        <h2 class="stat-number" data-target="99" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 5px;">0</h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Client Satisfaction %</p>
+    </div>
+    <div class="stat-item">
+        <h2 class="stat-number" data-target="24" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 5px;">0</h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Industry Awards Won</p>
+    </div>
+    <div class="stat-item">
+        <h2 class="stat-number" data-target="12" style="font-size: 2.5rem; color: var(--primary); margin-bottom: 5px;">0</h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">National Branches</p>
+    </div>
+</div>
+
+    <section class="container" id="about">
+        <div class="grid-2col" style="align-items: center;">
+            <div style="background-color: #eee; height: 380px; border-radius: 12px; overflow: hidden;">
+                <img src="pic5.jpg" alt="PropertyHub Head Office" style="width:100%; height:100%; object-fit:cover;">
+            </div>
+            <div>
+                <span style="color:var(--primary); font-weight:700; text-transform:uppercase; font-size:0.85rem;">Corporate Profile</span>
+                <h2 style="font-size:2.4rem; margin:10px 0 20px;">Redefining National Real Estate Standards Since 2012</h2>
+                <p style="color:var(--text-muted); line-height:1.7; margin-bottom:20px;">
+                    PropertyHub operates at the intersection of technological clarity and luxury residential options. Our platform guarantees real-time matching directly with complete compliance documentation under authorized state regulatory systems.
+                </p>
+                <blockquote style="border-left: 4px solid var(--primary); padding-left: 20px; font-style: italic; color: var(--text-main); margin-bottom: 20px;">
+                    "Transparency in real estate portfolio planning shouldn't be an additional market asset—it is an absolute foundational requirement for modern infrastructure."
+                </blockquote>
+                <p class="testimonial-author">— Executive Desk, PropertyHub Group</p>
+            </div>
+        </div>
+    </section>
+
+    <section style="background-color: var(--bg-card); border-top: 1px solid var(--border-color);" id="testimonials">
+        <div class="container">
+            <div class="heading-center">
+                <h2>Verified Investor Testimonials</h2>
+                <p>Read transparent feedback from clients who finalized their premium home selections through our platform.</p>
+            </div>
+            <div class="testimonial-container">
+                <div class="testimonial-slide active">
+                    <p class="testimonial-text">"The interface made filtering by regional state approvals highly streamlined. Finding a penthouse in Hyderabad with verified metadata took minimal time, and the direct WhatsApp connection expedited our property closing process."</p>
+                    <p class="testimonial-author">Anirudh R. — Senior Infrastructure Lead</p>
+                </div>
+                <div class="testimonial-slide">
+                    <p class="testimonial-text">"Using the built-in financial breakdown tool gave us complete validation prior to visiting the physical site in Bengaluru. The architectural descriptions map perfectly onto the verified properties."</p>
+                    <p class="testimonial-author">Meenakshi S. — Portfolio Manager</p>
+                </div>
+            </div>
+        </div>
+    </section> 
+
+    <div class="modal" id="propertyModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalCloseBtn" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-img">
+                <img id="modalImg" src="img3.jpg" alt="Detailed View">
+            </div>
+            <div class="modal-body">
+                <h3 id="modalTitle" style="font-size:1.6rem; margin-bottom:10px;">Property Title</h3>
+                <p id="modalPrice" style="color:var(--primary); font-size:1.3rem; font-weight:700; margin-bottom:15px;">Price</p>
+                <p id="modalDesc" style="color:var(--text-muted); line-height:1.6; margin-bottom:20px;">Detailed descriptions compile context here dynamically.</p>
+                
+                <div style="border-top: 1px solid var(--border-color); padding-top: 15px;">
+                    <h5 style="margin-bottom:10px; font-size:1rem;"><i class="fa-solid fa-map-location-dot" style="color:var(--primary);"></i> Immediate Transit Integrations</h5>
+                    <p id="modalTransit" style="font-size:0.9rem; color:var(--text-muted);"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="https://wa.me/919999999999" class="floating-whatsapp" target="_blank" title="Connect Directly via WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <a href="#" class="back-to-top" id="backToTopBtn" title="Scroll to Top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </a>
+
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h4 style="color: white; font-size:1.4rem; margin-bottom:15px;">PropertyHub</h4>
+                <p>The premier real estate exchange engine for high-value properties across major Indian metros. Complete regulatory verification on every listing.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Primary Hubs</h4>
+                <ul>
+                    <li><a href="#listings">Gachibowli, Hyderabad</a></li>
+                    <li><a href="#listings">Whitefield, Bengaluru</a></li>
+                    <li><a href="#listings">Bandra West, Mumbai</a></li>
+                    <li><a href="#listings">Koregaon Park, Pune</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal Matrix</h4>
+                <ul>
+                    <li><a href="#">RERA Compliance Check</a></li>
+                    <li><a href="#">Privacy Agreement</a></li>
+                    <li><a href="#">Terms of Deployment</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Corporate Identity</h4>
+                <p style="font-size:0.9rem;"><i class="fa-solid fa-building"></i> Level 7, Cyber Towers, Hitec City, Hyderabad, TS, 500081</p>
+                <p style="font-size:0.9rem; margin-top:10px;"><i class="fa-solid fa-envelope"></i> corporate@propertyhub.in</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 PropertyHub Development Corp. Designed for professional assessment presentation.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body></html>
